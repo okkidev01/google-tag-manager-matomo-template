@@ -192,10 +192,10 @@ ___TEMPLATE_PARAMETERS___
   },
   {
     "type": "CHECKBOX",
-    "name": "requireConsentForCampaignTracking",
-    "checkboxText": "Require consent to track campaign parameters",
+    "name": "disableCampaignParameters",
+    "checkboxText": "Disable Campaign Parameters Tracking",
     "simpleValueType": true,
-    "help": "By enabling the consent requirement, Matomo will track campaign parameters only for users who have provided their consent. This approach ensures that data collection respects users\u0027 preferences while enabling the analysis of traffic segmentation by key metrics like source, medium, and campaign specifics."
+    "help": "When this option is checked, Matomo will not track campaign parameters and they will be removed from the tracked URLs."
   },
   {
     "type": "PARAM_TABLE",
@@ -300,7 +300,7 @@ if (data.matomoUrl && data.idSite) {
   var disableConfigValues = {'enableBrowserFeatureDetection':'disableBrowserFeatureDetection'};
   paqDisable(_paq, disableConfigValues);
 
-  if (data.requireConsentForCampaignTracking) {
+  if (data.disableCampaignParameters) {
     _paq(['disableCampaignParameters']);
   }
 
@@ -545,7 +545,7 @@ ___TESTS___
 scenarios:
 - name: should_load_matomo_js
   code: |-
-    const mockData = {"enableBrowserFeatureDetection":false,"requireConsentForCampaignTracking":false,"disableCrossDomainLinking":false,"trackingEndpoint":"matomo.php","disableCookies":false,"enableJSErrorTracking":false,"setSecureCookie":false,"trackAllContentImpressions":false,"requireCookieConsent":false,"enableDoNotTrack":false,"requireConsent":false,"doNotUseSendBeacon":false,"jsEndpoint":"matomo.js","idSite":"3","cookieSameSite":"Lax","disableTrackPageview":false,"disableLinkTracking":false,"trackVisibleContentImpressions":false,"enableHeartBeatTimer":false,"matomoUrl":"https://web.innocraft.cloud"};
+    const mockData = {"enableBrowserFeatureDetection":false,"disableCampaignParameters":false,"disableCrossDomainLinking":false,"trackingEndpoint":"matomo.php","disableCookies":false,"enableJSErrorTracking":false,"setSecureCookie":false,"trackAllContentImpressions":false,"requireCookieConsent":false,"enableDoNotTrack":false,"requireConsent":false,"doNotUseSendBeacon":false,"jsEndpoint":"matomo.js","idSite":"3","cookieSameSite":"Lax","disableTrackPageview":false,"disableLinkTracking":false,"trackVisibleContentImpressions":false,"enableHeartBeatTimer":false,"matomoUrl":"https://web.innocraft.cloud"};
 
     // Call runCode to run the template's code.
     runCode(mockData);

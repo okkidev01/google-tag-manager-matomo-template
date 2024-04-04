@@ -1,6 +1,8 @@
 homepage: "https://matomo.org/"
 documentation: "https://github.com/matomo-org/google-tag-manager-matomo-template"
 versions:
+  - sha: 887c5f268f37238116b40c497bf0480154cd1b5b
+    changeNotes: Added new field disableCampaignParameters to disablecking
   - sha: 3e44ae900bd7da6e931cc81d935aa8e3b89213db
     changeNotes: Fixed domains set leading to JS error.
   - sha: e71bc0b9349074685da0925bc8f9e6657e01e5e4

@@ -122,6 +122,13 @@ ___TEMPLATE_PARAMETERS___
   },
   {
     "type": "CHECKBOX",
+    "name": "trackBots",
+    "checkboxText": "Track Bots",
+    "simpleValueType": true,
+    "help": "By default, Matomo doesn\u0027t track visits by bots in order to show accurate visitor metrics. Enable this feature to add tracking for bot visits."
+  },
+  {
+    "type": "CHECKBOX",
     "name": "disableCookies",
     "checkboxText": "Disable cookies",
     "simpleValueType": true,
@@ -317,7 +324,7 @@ if (data.matomoUrl && data.idSite) {
   
   var domains = getDomains();
   if (domains.length) {
-    _paq(["setDomains",domains]);
+    _paq(["setDomains", domains]);
   }
   
   configWithValues = {'userId':'setUserId'};
@@ -333,6 +340,10 @@ if (data.matomoUrl && data.idSite) {
   
   enableConfigValues = {'enableDoNotTrack':'setDoNotTrack', 'enableJSErrorTracking':'enableJSErrorTracking', 'enableHeartBeatTimer':'enableHeartBeatTimer','trackAllContentImpressions':'trackAllContentImpressions', 'trackVisibleContentImpressions':'trackVisibleContentImpressions'};
   paqEnable(_paq, enableConfigValues);
+  
+  if (data.trackBots) {
+     _paq(['appendToTrackingUrl', 'bots=1']);
+  }
   
   
   disableConfigValues = {'doNotUseSendBeacon':'alwaysUseSendBeacon'};
